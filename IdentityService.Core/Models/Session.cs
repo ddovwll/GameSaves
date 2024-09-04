@@ -2,10 +2,10 @@
 
 public class Session
 {
-    public Guid Id { get; init; }
-    public User User { get; init; }
-    public Guid UserId { get; init; }
-    public DateTime CreatedOn { get; init; }
+    public Guid Id { get; set; }
+    public User User { get; set; }
+    public Guid UserId { get; set; }
+    public DateTime CreatedOn { get; set; }
     public const int ExpiresOnDays = 60;
-    public string FingerPrint { get; init; }
+    public string FingerPrint { get; set; }
 }

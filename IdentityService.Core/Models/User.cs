@@ -2,8 +2,8 @@
 
 public class User
 {
-    public Guid Id { get; init; }
-    public string Name { get; init; }
-    public string Password { get; init; }
-    public string Salt { get; init; }
+    public Guid Id { get; set; }
+    public string Name { get; set; }
+    public string Password { get; set; }
+    public string Salt { get; set; }
 }
