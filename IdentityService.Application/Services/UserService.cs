@@ -11,7 +11,6 @@ public class UserService : IUserService
     private readonly IPasswordEncrypt passwordEncryptor;
 
     public UserService(IUserRepository userRepository, 
-        IJwtCreator jwtCreator, 
         IPasswordEncrypt passwordEncryptor)
     {
         this.userRepository = userRepository;
