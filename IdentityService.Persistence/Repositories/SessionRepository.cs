@@ -20,10 +20,10 @@ public class SessionRepository : ISessionRepository
         return session;
     }
 
-    public async Task<Session> GetAsync(Guid id, string fingerprint)
+    public async Task<Session> GetAsync(string fingerprint)
     {
         var session = await database.Sessions.FirstOrDefaultAsync(
-            s => s.Id == id && s.FingerPrint == fingerprint) ?? new Session();
+            s => s.FingerPrint == fingerprint) ?? new Session();
         return session;
     }
 

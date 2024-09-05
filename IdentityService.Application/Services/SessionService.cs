@@ -15,10 +15,13 @@ public class SessionService : ISessionService
     
     public async Task<Session> UpdateSessionAsync(Guid id, string fingerPrint)
     {
-        var sessionFromDb = await sessionRepository.GetAsync(id, fingerPrint);
+        var sessionFromDb = await sessionRepository.GetAsync(fingerPrint);
 
         if (sessionFromDb.Id == Guid.Empty)
             throw new NotFoundException("Сессия не найдена");
+
+        if (sessionFromDb.Id != id)
+            throw new NotValidException("Неверные дынные");
 
         if (DateTime.Now > sessionFromDb.CreatedOn.AddDays(Session.ExpiresOnDays))
         {
@@ -33,9 +36,9 @@ public class SessionService : ISessionService
         return sessionFromDb;
     }
 
-    public async Task DeleteSessionAsync(Guid id, string fingerPrint)
+    public async Task DeleteSessionAsync(string fingerPrint)
     {
-        var session = await sessionRepository.GetAsync(id, fingerPrint);
+        var session = await sessionRepository.GetAsync(fingerPrint);
         
         if(session.Id == Guid.Empty)
             throw new KeyNotFoundException("Сессия не найдена");
@@ -45,14 +48,14 @@ public class SessionService : ISessionService
 
     public async Task<Session> CreateSessionAsync(Guid userId, string fingerPrint)
     {
-        var sessionFromDb = await sessionRepository.GetAsync(userId, fingerPrint);
+        var sessionFromDb = await sessionRepository.GetAsync(fingerPrint);
 
         if (sessionFromDb.Id != Guid.Empty)
         {
             await sessionRepository.DeleteAsync(sessionFromDb);
             
             sessionFromDb.Id = Guid.NewGuid();
-            sessionFromDb.CreatedOn = DateTime.Now;
+            sessionFromDb.CreatedOn = DateTime.UtcNow;
             
             await sessionRepository.AddAsync(sessionFromDb);
             
@@ -62,7 +65,7 @@ public class SessionService : ISessionService
         var session = new Session()
         {
             Id = Guid.NewGuid(),
-            CreatedOn = DateTime.Now,
+            CreatedOn = DateTime.UtcNow,
             FingerPrint = fingerPrint,
             UserId = userId
         };

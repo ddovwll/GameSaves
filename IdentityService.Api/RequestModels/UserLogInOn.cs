@@ -1,6 +1,6 @@
 ﻿namespace IdentityService.Api.RequestModels;
 
-public class UserRegister
+public class UserLogInOn
 {
     public string Name { get; init; }
     public string Password { get; init; }
