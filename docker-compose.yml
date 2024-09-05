@@ -15,3 +15,20 @@
       POSTGRES_DB: IdentityDb
       POSTGRES_USER: User
       POSTGRES_PASSWORD: qwe123asd
+      
+  savesservice.api:
+    image: savesservice.api
+    build:
+      context: .
+      dockerfile: SavesService.Api/Dockerfile
+    depends_on:
+      - SavesDb
+    ports:
+      - "5001:8082"
+
+  SavesDb:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: SavesDb
+      POSTGRES_USER: User
+      POSTGRES_PASSWORD: qwe123asd
