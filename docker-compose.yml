@@ -1,0 +1,17 @@
+﻿services:
+  identityservice.api:
+    image: identityservice.api
+    build:
+      context: .
+      dockerfile: IdentityService.Api/Dockerfile
+    depends_on:
+      - IdentityDb
+    ports:
+      - "5000:8080"
+  
+  IdentityDb:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: IdentityDb
+      POSTGRES_USER: User
+      POSTGRES_PASSWORD: qwe123asd
