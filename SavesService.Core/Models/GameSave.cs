@@ -6,6 +6,7 @@ public class GameSave
     public Guid UserId { get; set; }
     public string Name { get; set; }
     public string Path { get; set; }
+    public string FileName { get; set; }
     public string Game { get; set; }
     public string GameVersion { get; set; }
     public DateTime Date { get; set; }
