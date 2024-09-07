@@ -1,5 +1,24 @@
 # This is a generated file. Not intended for manual editing.
 services:
+  gateway:
+    build:
+      context: "C:\\Users\\user\\RiderProjects\\GameSaves"
+      dockerfile: "Gateway/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Gateway.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "gateway:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\user\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\user\\RiderProjects\\GameSaves\\Gateway:/app:rw"
+    - "C:\\Users\\user\\RiderProjects\\GameSaves:/src:rw"
+    working_dir: "/app"
   identityservice.api:
     build:
       context: "C:\\Users\\user\\RiderProjects\\GameSaves"
