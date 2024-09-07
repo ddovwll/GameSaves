@@ -19,3 +19,23 @@ services:
     - "C:\\Users\\user\\RiderProjects\\GameSaves\\IdentityService.Api:/app:rw"
     - "C:\\Users\\user\\RiderProjects\\GameSaves:/src:rw"
     working_dir: "/app"
+  savesservice.api:
+    build:
+      context: "C:\\Users\\user\\RiderProjects\\GameSaves"
+      dockerfile: "SavesService.Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/SavesService.Api.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net8.0/SavesService.Api.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "savesservice.api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\user\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\user\\RiderProjects\\GameSaves\\SavesService.Api:/app:rw"
+    - "C:\\Users\\user\\RiderProjects\\GameSaves:/src:rw"
+    working_dir: "/app"
