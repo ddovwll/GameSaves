@@ -32,3 +32,11 @@
       POSTGRES_DB: SavesDb
       POSTGRES_USER: User
       POSTGRES_PASSWORD: qwe123asd
+      
+  gateway:
+    image: gateway
+    build:
+      context: .
+      dockerfile: Gateway/Dockerfile
+    ports:
+      - "7000:8080"
