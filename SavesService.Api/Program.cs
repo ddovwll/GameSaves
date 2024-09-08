@@ -20,8 +20,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddDbContext<DbHelper>(optionsBuilder =>
 {
-    optionsBuilder.UseInMemoryDatabase("InMemoryDatabase");
-    //optionsBuilder.UseNpgsql(builder.Configuration.GetConnectionString("DataBase"));
+    //optionsBuilder.UseInMemoryDatabase("InMemoryDatabase");
+    optionsBuilder.UseNpgsql(builder.Configuration.GetConnectionString("DataBase"));
 });
 
 builder.Services.AddScoped<IGameSaveRepository, GameSaveRepository>();
